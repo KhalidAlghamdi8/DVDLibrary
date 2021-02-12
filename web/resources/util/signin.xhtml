@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+    <head>
+        <title>This is not display</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </head>
+    <body>
+        <composite:interface>
+            <composite:attribute name="usernamePrompt"/>
+            <composite:attribute name="username" required="true" type="String"/>
+            <composite:attribute name="passwordPrompt"/>
+            <composite:attribute name="password"/>
+            <composite:attribute name="loginButtonText"/>
+            <composite:attribute name="loginAction" method-signature="java.lang.String action()"/>
+        </composite:interface>
+        
+        <composite:implementation>
+            <h:panelGrid columns="2">
+                #{cc.attrs.usernamePrompt} <h:inputText id="username" value="#{cc.attrs.username}" style="background-color: yellow"/>
+                #{cc.attrs.passwordPrompt} <h:inputSecret id="password" value="#{cc.attrs.password}" style="background-color: yellow" required="true"/>
+                <h:message for="password" showSummary="true" showDetail="false" styleClass="error"/>
+                <h:commandButton id="LoginButton" value="#{cc.attrs.loginButtonText}" action="#{cc.attrs.loginAction}"/>
+            </h:panelGrid>
+        </composite:implementation>
+    </body>
+</html>
